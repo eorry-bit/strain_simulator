@@ -1,0 +1,4 @@
+shm.strain.v1.StrainTelemetry.StrainBatch.values max_count:64
+shm.strain.v1.StrainDeviceAttributes.firmware_version max_size:32
+shm.strain.v1.StrainDeviceAttributes.serial_number    max_size:32
+shm.strain.v1.StrainDeviceAttributes.device_model     max_size:32

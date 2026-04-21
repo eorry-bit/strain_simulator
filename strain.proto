@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package shm.strain.v1;
+
+// 遥测上报消息
+message StrainTelemetry {
+  StrainBatch strainBatch = 1;
+
+  message StrainBatch {
+    uint64 timestamp = 1;            // 首样本设备时间戳（毫秒）
+    uint32 ch_no = 2;                // 通道编号（从 1 开始）
+    uint32 sample_interval_ms = 3;   // 采样间隔（ms），100Hz=10, 50Hz=20, 20Hz=50
+    repeated float values = 4;      // 该通道的应变值数组（με）
+    optional float temperature = 5;   // 该通道温度值（℃）
+    optional uint32 battery = 6;     // 电池电量 0-100%
+    optional uint32 mode = 7;        // 设备工作模式
+    optional uint32 status = 8;      // 状态码，0=正常
+  }
+}
+
+// 属性上报消息
+message StrainDeviceAttributes {
+  string firmware_version = 1;       // 固件版本
+  string serial_number = 2;          // 设备序列号
+  string device_model = 3;           // 设备型号
+  uint32 channel_count = 4;          // 通道数
+  uint32 sample_interval_ms = 5;     // 采样间隔（ms），所有通道统一
+}
